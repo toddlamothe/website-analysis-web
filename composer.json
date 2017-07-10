@@ -1,0 +1,13 @@
+{
+    "name": "toddlamothe/domain-analytics-web",
+    "authors": [
+        {
+            "name": "Todd LaMothe",
+            "email": "todd@unionstreetmedia.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^3.3",
+        "components/jquery": "^3.2"
+    }
+}
