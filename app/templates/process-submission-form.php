@@ -76,4 +76,10 @@ if(isset($_POST['competitor3url']) && !empty($_POST['competitor3url'])) {
 }
 
 curl_close($curl);
+
+function dd($d) {
+    echo "<pre>";
+    var_dump($d);
+    echo "</pre>";
+}
 ?>

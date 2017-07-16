@@ -6,6 +6,7 @@
 
 namespace App\Core\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -68,5 +69,9 @@ class Controller {
         include sprintf(ROOT_FOLDER . '/resources/views/%s.php', $name);
 
         return new Response(ob_get_clean());
+    }
+
+    public function json($content) {
+        return new JsonResponse($content);
     }
 }

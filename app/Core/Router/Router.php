@@ -24,9 +24,18 @@ class Router {
         return $this;
     }
 
+    public function post($url, $controllerAction, $name = null) {
+        $this->addRoute($url, $controllerAction, $name, ['POST']);
+
+        return $this;
+    }
+
     protected function addRoute($url, $controllerAction, $name, array $method) {
         $this->route->add($url, new Route($url, array(
             '_controller' => Controller\Controller::parseNamespace($controllerAction),
+            'requirements' => [
+                'trailingSlash' =>  "[/]{0,1}"
+            ]
         ), array(), array(), '', array(), $method));
     }
 
