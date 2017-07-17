@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Matcher\UrlMatcher;
 use Symfony\Component\HttpKernel;
 
 define('ROOT_FOLDER', __DIR__ . '/../');
+define('PUBLIC_FOLDER', __DIR__);
 
 $request = Request::createFromGlobals();
 $response = new Response();
@@ -27,6 +28,20 @@ $controllerResolver = new HttpKernel\Controller\ControllerResolver();
 $argumentResolver = new HttpKernel\Controller\ArgumentResolver();
 
 try {
+    // work around for assets.
+    $pathInfo = $_SERVER['REQUEST_URI'];
+    if (strpos($pathInfo, '/assets/') === 0) {
+        $file = PUBLIC_FOLDER . "{$pathInfo}";
+
+        if (is_readable($file)) {
+            echo file_get_contents($file);
+
+            return;
+        }
+
+        return new Response('No file.');
+    }
+
     $request->attributes->add($matcher->match($request->getPathInfo()));
 
     $controller = $controllerResolver->getController($request);
