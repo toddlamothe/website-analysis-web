@@ -121,16 +121,18 @@
                     <div class="col-md-12 col-sm-12" style="padding-left: 0px;">
                         <h3>Keyword Placement</h3>
                     </div>
-                    <div class="col-md-12" style="padding: 0px;">
+                    <div class="col-md-12"  style="padding: 0px;">
                         <table class="table table-striped">
                             <tr>
                                 <th>Page 1</th>
                                 <th>Almost There</th>
+                                <th>Page 2 To 5</th>
                                 <th>Just Fell Off</th>
                             </tr>
-                            <tr v-for="val in individual.analytics">
-                                <td>FILL</td>
-                                <td>FILL</td>
+                            <tr v-if="individual.keywordPlacement.Page1">
+                                <td >{{ individual.keywordPlacement.Page1 }}</td>
+                                <td >{{ individual.keywordPlacement.AlmostThere }}</td>
+                                <td >{{ individual.keywordPlacement.Pages2To5 }}</td>
                                 <td>FILL</td>
                             </tr>
                         </table>

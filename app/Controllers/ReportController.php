@@ -51,12 +51,16 @@ class ReportController extends Controller {
             $basicUrl = "https://c5wjveoci2.execute-api.us-east-1.amazonaws.com/beta/basic?url=" . $url;
 
             $analytics = json_decode($this->doRequest($basicUrl));
+
+            $keywordPlacementUrl = "https://c5wjveoci2.execute-api.us-east-1.amazonaws.com/beta/keyword-search-results-paid?url={$url}";
+            $keywordPlacement = json_decode($this->doRequest($keywordPlacementUrl));
         }
 
         return $this->json([
             'success' => true,
             'data' => [
                 'analytics' => $analytics,
+                'keywordPlacement' => $keywordPlacement
             ]
         ]);
     }

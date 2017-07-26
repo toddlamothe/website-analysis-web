@@ -15,7 +15,10 @@ var app = new Vue({
             'competitor'
         ],
         individual: {
-            analytics: []
+            analytics: [],
+            keywordPlacement: {
+
+            }
         }
     },
 
@@ -74,6 +77,7 @@ var app = new Vue({
                 if (response.success == true) {
                     app.individual.analytics = [];
                     app.individual.analytics.push(data.analytics);
+                    app.individual.keywordPlacement = data.keywordPlacement;
                 } else if (response.success == false) {
 
                 } else {
