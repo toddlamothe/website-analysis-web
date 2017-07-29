@@ -2,12 +2,11 @@
 <head>
     <title>Competitive Analysis</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 <body>
 <div id="root" class="container-fluid">
-    <form class="form-horizontal" method="post" action="#">
 
-    </form>
 
     <form class="form-horizontal" method="post" action="#">
         <div class="row">
@@ -306,6 +305,10 @@
             </div>
             <div class="col-md-1 col-sm-1"></div>
         </div>
+    </div>
+
+    <div v-if="loading" class="loader">
+        <div class="loader-inner"></div>
     </div>
 </div>
 

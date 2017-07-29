@@ -39,4 +39,4 @@ This project can be run using any standard web server with php support. The site
 
 `php -S 127.0.0.1:8008 -t web/ web/front.php`
 
-`http://localhost:8008/report`
+`http://localhost:8008/competitor-report/`

@@ -19,7 +19,8 @@ var app = new Vue({
             keywordPlacement: {
 
             }
-        }
+        },
+        loading: false
     },
 
     methods: {
@@ -32,6 +33,7 @@ var app = new Vue({
         },
         
         runCompetitorReport: function () {
+            this.loading = true;
             var data = {
                 url: this.url,
                 competitors: [
@@ -39,7 +41,9 @@ var app = new Vue({
                     this.competitor2url,
                     this.competitor3url
                 ]
-            }
+            };
+
+
 
             $.ajax({
                 url: '/get-competitor-report/',
@@ -51,6 +55,7 @@ var app = new Vue({
                 if (response.success == true) {
                     app.analytics = data.analytics;
                     app.topCompetitors = data.topCompetitors;
+                    app.loading = false;
                 } else if (response.success == false) {
 
                 } else {
@@ -63,6 +68,7 @@ var app = new Vue({
         },
 
         runIndividualReport: function () {
+            this.loading = true;
             var data = {
                 url: this.url,
             }
@@ -78,6 +84,7 @@ var app = new Vue({
                     app.individual.analytics = [];
                     app.individual.analytics.push(data.analytics);
                     app.individual.keywordPlacement = data.keywordPlacement;
+                    app.loading = false;
                 } else if (response.success == false) {
 
                 } else {
