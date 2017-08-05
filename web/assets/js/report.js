@@ -74,7 +74,6 @@ var app = new Vue({
         },
         
         runCompetitorReport: function () {
-            this.loading = true;
             var data = {
                 url: this.url,
                 competitors: [
@@ -84,8 +83,13 @@ var app = new Vue({
                 ]
             };
 
+            if (this.competitor1url.length == 0 && this.competitor2url.length == 0 && this.competitor3url.length == 0) {
+                alert('Provide at least one competitor url.');
 
+                return;
+            }
 
+            this.loading = true;
             $.ajax({
                 url: '/get-competitor-report/',
                 data: data,
