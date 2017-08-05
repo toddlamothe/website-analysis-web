@@ -2,12 +2,14 @@ var app = new Vue({
     el: '#root',
 
     data: {
-        url: 'https://unionstreetmedia.com/',
-        competitor1url: 'http://www.bostonlogic.com/',
-        competitor2url: 'http://www.realestatewebmasters.com/',
-        competitor3url: 'https://placester.com/',
+        url: '',
+        competitor1url: '',
+        competitor2url: '',
+        competitor3url: '',
         analytics: [],
-        topCompetitors: [],
+        topCompetitors: {
+            organic: []
+        },
         state: 'index',
         states: [
             'index',
@@ -20,10 +22,49 @@ var app = new Vue({
 
             }
         },
-        loading: false
+        debug: true,
+        loading: false,
+        /* Vue data-tables */
+        topCompetitorsColumns: [
+            'domainName', 'overlap', 'commonKeywords'
+        ],
+        topCompetitorNames: {
+            domainName: 'Domain Name',
+            overlap: 'Overlap',
+            commonKeywords: 'Common Keywords'
+        },
+        competitorSeoColumns: [
+            'url', 'num_organic_keywords', 'organic_clicks_per_month', 'daily_organic_traffic_value'
+        ],
+        competitorSeoNames: {
+            url: 'Domain',
+            num_organic_keywords: 'Organic Keywords',
+            organic_clicks_per_month: 'Organic clicks/mo',
+            daily_organic_traffic_value: 'Daily Organic Traffic Value'
+        },
+        competitorPpcColumns: [
+            'url', 'num_paid_keywords', 'paid_clicks_per_month', 'daily_adwords_budget', 'monthly_adwords_budget'
+        ],
+        competitorPpcNames: {
+            url: 'Domain',
+            num_paid_keywords: 'Paid Keywords',
+            paid_clicks_per_month: 'Paid clicks/mo',
+            daily_adwords_budget: 'Daily Adwords Budget',
+            monthly_adwords_budget: 'Monthly Adwords Budget'
+        }
+    },
+    mounted: function () {
+        if (this.debug == true) {
+            this.url = 'https://unionstreetmedia.com/';
+            this.competitor1url = 'http://www.bostonlogic.com/';
+            this.competitor2url = 'http://www.realestatewebmasters.com/';
+            this.competitor3url = 'https://placester.com/';
+
+        }
     },
 
     methods: {
+
         run: function () {
             if (this.state === 'competitor') {
                 return this.runCompetitorReport();
@@ -55,6 +96,7 @@ var app = new Vue({
                 if (response.success == true) {
                     app.analytics = data.analytics;
                     app.topCompetitors = data.topCompetitors;
+                    app.organic = data.topCompetitors.organic;
                     app.loading = false;
                 } else if (response.success == false) {
 
