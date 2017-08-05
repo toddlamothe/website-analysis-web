@@ -85,12 +85,14 @@ class ReportController extends Controller {
 
         if (is_array($competitorUrls) && !empty($competitorUrls)) {
             foreach ($competitorUrls as $competitorUrl) {
-                $basicUrl = "https://c5wjveoci2.execute-api.us-east-1.amazonaws.com/beta/basic?url=" . $competitorUrl;
+                if (!empty($competitorUrl)) {
+                    $basicUrl = "https://c5wjveoci2.execute-api.us-east-1.amazonaws.com/beta/basic?url=" . $competitorUrl;
 
-                $analytics = json_decode($this->doRequest($basicUrl));
-                $analytics->url = $competitorUrl;
+                    $analytics = json_decode($this->doRequest($basicUrl));
+                    $analytics->url = $competitorUrl;
 
-                array_push($analyticsData, $analytics);
+                    array_push($analyticsData, $analytics);
+                }
             }
         }
 
@@ -118,12 +120,21 @@ class ReportController extends Controller {
         // Fetch top organic competitors
         $organicCompetitorsUrl = "https://c5wjveoci2.execute-api.us-east-1.amazonaws.com/beta/domain-competitors?url=" . $url . "&isOrganic=true";
 
-        $topOrganicCompetitors = json_decode($this->doRequest($organicCompetitorsUrl));
+        $topOrganicCompetitors = array_map(function ($item) {
+            $item->overlap = round($item->overlap, 2);
+
+            return $item;
+        }, json_decode($this->doRequest($organicCompetitorsUrl)));
 
         // Fetch top paid competitors
 
         $paidCompetitorsUrl = "https://c5wjveoci2.execute-api.us-east-1.amazonaws.com/beta/domain-competitors?url=" . $url . "&isOrganic=false";
-        $topPaidCompetitors = json_decode($this->doRequest($paidCompetitorsUrl));
+        $topPaidCompetitors = array_map(function ($item) {
+            $item->overlap = round($item->overlap, 2);
+
+            return $item;
+        }, json_decode($this->doRequest($paidCompetitorsUrl)));
+
 
         return [
             'organic' => $topOrganicCompetitors,
