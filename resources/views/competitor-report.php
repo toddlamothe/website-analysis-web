@@ -214,6 +214,12 @@
             <div class="col-md-10 table-responsive">
                 <data-table class="table table-striped table-sorted" :data="analytics" :columns-to-display="competitorPpcColumns" :display-names="competitorPpcNames">
                     <template slot="caption"><h3>PPC Comparison</h3></template>
+                    <template slot="daily_adwords_budget" scope="props">
+                        ${{props.entry.daily_adwords_budget}}
+                    </template>
+                    <template slot="monthly_adwords_budget" scope="props">
+                        ${{props.entry.monthly_adwords_budget}}
+                    </template>
                 </data-table>
             </div>
             <div class="col-md-1"></div>
