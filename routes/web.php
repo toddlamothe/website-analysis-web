@@ -10,7 +10,7 @@ use Symfony\Component\Routing\RouteCollection;
 $router = new Router(new RouteCollection());
 
 $router->get('/report/', 'ReportController@report')
-    ->get('/competitor-report/', 'ReportController@competitorReport')
+    ->get('/report', 'ReportController@report')
     ->post('/get-competitor-report/', 'ReportController@getCompetitorReport')
     ->post('/get-individual-report/', 'ReportController@getIndividualReport');
 

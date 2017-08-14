@@ -37,6 +37,6 @@ This project can be run using any standard web server with php support. The site
 
 ## Use build in php server
 
-`php -S 127.0.0.1:8008 -t web/ web/front.php`
+`php -S 127.0.0.1:8008 -t public/ public/index.php`
 
-`http://localhost:8008/competitor-report/`
+`http://localhost:8008/report/`

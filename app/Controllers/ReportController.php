@@ -30,16 +30,7 @@ class ReportController extends Controller {
     }
 
     public function report() {
-
-        return $this->render('report', [
-            'some' => 'Name'
-        ]);
-    }
-
-    public function competitorReport() {
-        return $this->render('competitor-report', [
-            'some' => 'Name'
-        ]);
+        return $this->render('report', []);
     }
 
     public function getIndividualReport() {
