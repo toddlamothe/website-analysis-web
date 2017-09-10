@@ -54,6 +54,7 @@ var app = new Vue({
         }
     },
     mounted: function () {
+        this.state = 'competitor';
         if (this.debug == true) {
             this.url = 'https://unionstreetmedia.com/';
             this.competitor1url = 'http://www.bostonlogic.com/';
@@ -66,6 +67,12 @@ var app = new Vue({
     methods: {
 
         run: function () {
+            if (this.url.length == 0) {
+                alert('Url is required.');
+
+                return;
+            }
+
             if (this.state === 'competitor') {
                 return this.runCompetitorReport();
             }

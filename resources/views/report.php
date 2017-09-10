@@ -29,9 +29,9 @@
                 </div>
             </div>
             <div class="col-md-3 col-sm-3" v-if="url.length > 1">
-                <a class="bootstrap-link" v-on:click="showCompetitorPage">Competitor Report</a>
-                <span> | </span>
-                <a class="bootstrap-link" v-on:click="showIndividualPage">Individual Report</a>
+<!--                <a class="bootstrap-link" v-on:click="showCompetitorPage">Competitor Report</a>-->
+<!--                <span> | </span>-->
+<!--                <a class="bootstrap-link" v-on:click="showIndividualPage">Individual Report</a>-->
             </div>
         </div>
         <div class="row" v-if="state === 'competitor'">
